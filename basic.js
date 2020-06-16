@@ -2,13 +2,14 @@ let dotenv = require('dotenv').config();
 let Sequelize = require('sequelize');
 let DataTypes = Sequelize.DataTypes;
 const Op = Sequelize.Op
+
 //creating an instance of the database
 let db = new Sequelize('testdb2','alien',process.env.pass,{
     host: 'localhost',
-    dialect: 'mysql',
-    operatorAliases: {
-        $gt: Op.gt
-    }
+    dialect: 'mysql'
+    // operatorAliases: {
+    //     $gt: Op.gt
+    // }
 });
 
 
@@ -51,3 +52,9 @@ Coders.findAll({
 .then((coders) => {
     coders.forEach(coder => console.log(coder.dataValues) )
 });
+
+module.exports = {
+    db,
+    Op,
+    Coders,DataTypes
+}
